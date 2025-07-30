@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pushback Strategy Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<div id="teamInputModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Enter Team Names</h2>
+    <input type="text" id="red1Input" placeholder="Red 1">
+    <input type="text" id="red2Input" placeholder="Red 2">
+    <input type="text" id="blue1Input" placeholder="Blue 1">
+    <input type="text" id="blue2Input" placeholder="Blue 2">
+    <button onclick="confirmTeams()">OK</button>
+  </div>
+</div>
+<body>
+
+    <section class="controls">
+      <div class="buttons">
+         <button onclick="newMatch()">New Match</button>
+         <input type="color" id="colorPicker" value="#ff0000">
+         <button onclick="undo()">Undo</button>
+         <button onclick="redo()">Redo</button>
+         <button onclick="clearCanvas()">Clear</button>
+         <button onclick="saveMatch()">Save</button>
+         <select id="matchList" onchange="loadMatch(this.value)">
+            <option value="">Load Saved</option>
+         </select>
+        </div>
+    </section>
+
+  <section class="field-wrapper" id="fieldWrapper">
+    <div class="field-container" id="panZoomContainer">
+      <img src="assets/field.png" id="field-img" alt="Field">
+      <canvas id="strategy-canvas"></canvas>
+      <div id="robots"></div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
